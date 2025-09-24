@@ -3,17 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Единая система учёта продаж с маркетплейсов — Торинцев Александр</title>
-  <meta name="description" content="Веб-приложение для консолидированного учёта продаж: Ozon, WB, Яндекс и другие. Автоматизация импорта, аналитика, интеграции с 1С и CRM, ролевой доступ, поддержка ИИ." />
+  <title>Система управления доставкой и логистикой — Торинцев Александр</title>
+  <meta name="description" content="Единая платформа для управления доставкой: приём заказов, назначение курьерам, построение маршрутов, трекинг, SLA, финучёт. Интеграции с картами и 1С/CRM." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1020; --panel:#121833; --muted:#9db2d7; --text:#e9f0ff;
-      --brand:#6aa7ff; --brand-2:#a16dff; --ok:#00d68f; --danger:#ff5a84;
-      --ring: 0 0 0 3px rgba(106,167,255,.25);
-    }
+    :root{--bg:#0b1020; --panel:#121833; --muted:#9db2d7; --text:#e9f0ff; --brand:#6aa7ff; --brand-2:#a16dff; --ok:#00d68f; --danger:#ff5a84; --ring:0 0 0 3px rgba(106,167,255,.25)}
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:radial-gradient(1200px 900px at 80% -10%, rgba(161,109,255,.25), transparent 60%), radial-gradient(1000px 700px at -10% 20%, rgba(106,167,255,.25), transparent 60%), var(--bg); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.5}
     a{color:var(--brand); text-decoration:none}
@@ -28,61 +24,47 @@
     .nav .brand .dot{width:12px;height:12px;border-radius:50%; background:linear-gradient(90deg,var(--brand),var(--brand-2))}
     .nav a{margin-left:18px; font-weight:600; color:var(--muted)}
     .nav a:hover{color:var(--text)}
+    section{padding:60px 0}
+    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.1; margin:14px 0 18px}
+    h2{font-size: clamp(22px, 3vw, 34px); margin:0 0 14px}
     .hero{padding:80px 0 40px}
     .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center}
     .eyebrow{display:inline-flex; align-items:center; gap:.5rem; background:rgba(161,109,255,.1); color:#d9c8ff; padding:7px 12px; border-radius:999px; border:1px solid rgba(161,109,255,.25); font-weight:700; font-size:.9rem}
-    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.1; margin:14px 0 18px}
-    .lead{font-size: clamp(15px, 1.6vw, 18px); color:var(--muted); max-width:680px}
-    .hero-cta{display:flex; gap:14px; margin:28px 0 0}
-    .glass{background:rgba(18,24,51,.75); border:1px solid rgba(255,255,255,.08); border-radius:16px}
-    .ui{position:relative; padding:24px; min-height:320px}
-    .badge{display:inline-flex; align-items:center; gap:.4rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted)}
-    .badge .dot{width:6px;height:6px;border-radius:50%; background:var(--ok)}
+    .lead{font-size: clamp(15px, 1.6vw, 18px); color:var(--muted); max-width:720px}
     .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    section{padding:60px 0}
-    h2{font-size: clamp(22px, 3vw, 34px); margin:0 0 14px}
+    .badge{display:inline-flex; align-items:center; gap:.4rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted)}
     .two{display:grid; grid-template-columns: 1fr 1fr; gap:28px}
-    ul.check{list-style:none; padding:0; margin:0}
-    ul.check li{margin:8px 0; padding-left:28px; position:relative}
-    ul.check li:before{content:""; position:absolute; left:0; top:9px; width:16px; height:16px; border-radius:4px; background:linear-gradient(90deg,var(--brand),var(--brand-2));}
-    .muted{color:var(--muted)}
-    .compare{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:22px}
+    .panel{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px}
     .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
     .card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px}
-    .cta{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px; border:1px dashed rgba(255,255,255,.2); border-radius:16px}
+    .cta{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px; border:1px dashed rgba(255,255,255,.2); border-radius:16px; margin-top:8px}
+    .muted{color:var(--muted)}
+    .tiny{font-size:12px; color:var(--muted)}
     form{display:grid; grid-template-columns:1fr 1fr; gap:14px}
     form .full{grid-column:1/-1}
     input,select,textarea{background:#0f1630; border:1px solid #2a375f; color:var(--text); padding:12px 14px; border-radius:10px; width:100%}
     textarea{min-height:110px; resize:vertical}
     input:focus, select:focus, textarea:focus{outline:none; box-shadow:var(--ring); border-color:var(--brand)}
     footer{padding:40px 0; color:var(--muted); border-top:1px solid rgba(255,255,255,.06)}
-    .tiny{font-size:12px; color:var(--muted)}
-    .tagline{font-weight:700; color:#cfe0ff}
-    details summary{list-style:none}
-    details summary::-webkit-details-marker{display:none}
-    @media (max-width: 960px){
-      .hero-grid, .two, form{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr; gap:14px}
-      .cta{flex-direction:column; align-items:flex-start}
-      .nav a{display:none}
-    }
-
     /* Carousel */
     .carousel{position:relative; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03)}
     .carousel-track{display:flex; transition:transform .5s ease}
     .slide{min-width:100%; padding:14px; display:grid; grid-template-columns:1fr 1fr; gap:14px}
     .shot{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:16px}
-    .shot h4{margin:0 0 8px}
-    .shot p{margin:0; color:var(--muted)}
-    .shot img{display:block;max-width:100%;height:auto}
+    .shot img{display:block; max-width:100%; height:auto; border-radius:10px; border:1px solid rgba(255,255,255,.08)}
     .carousel-btn{position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.15); padding:10px 12px; border-radius:10px; cursor:pointer}
     .carousel-btn:hover{background:rgba(0,0,0,.5)}
     .prev{left:10px} .next{right:10px}
     .dots{display:flex; gap:8px; justify-content:center; margin-top:12px}
     .dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); border:1px solid rgba(255,255,255,.2); cursor:pointer}
     .dot.active{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
-    @media (max-width: 960px){ .slide{grid-template-columns:1fr} }
-
+    @media (max-width: 960px){
+      .hero-grid, .two, form{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr; gap:14px}
+      .cta{flex-direction:column; align-items:flex-start}
+      .nav a{display:none}
+      .slide{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -91,10 +73,10 @@
     <div class="brand"><span class="dot"></span> ТОРИНЦЕВ АЛЕКСАНДР</div>
     <nav>
       <a href="#solution">Решение</a>
-      <a href="#features">Возможности</a><a href="#screens">Скриншоты</a>
+      <a href="#features">Возможности</a>
+      <a href="#screens">Скриншоты</a>
       <a href="#pricing">Стоимость</a>
       <a href="#faq">FAQ</a>
-      <a href="#about">Обо мне</a>
       <a href="#contact">Связаться</a>
     </nav>
   </div>
@@ -103,37 +85,30 @@
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">Единый центр управления продажами</div>
-      <h1>Все продажи с маркетплейсов — <br>в одной системе</h1>
-      <p class="lead">Автоматизация учёта, аналитика и финансовый контроль без табличек и хаоса. Ozon, Wildberries, Яндекс и другие — в едином интерфейсе. Интеграции с 1С и CRM. Поддержка ИИ.</p>
-      <div class="hero-cta">
+      <div class="eyebrow">Единый центр управления доставкой</div>
+      <h1>Все заказы, курьеры и маршруты — в одной системе</h1>
+      <p class="lead">Приём и распределение заказов, построение оптимальных маршрутов, трекинг курьеров в реальном времени, контроль SLA и финучёт. Интеграции с картами и 1С/CRM.</p>
+      <div class="chips">
+        <span class="badge">Автораспределение заказов</span>
+        <span class="badge">Маршрутизация и ETA</span>
+        <span class="badge">Трекинг в реальном времени</span>
+      </div>
+      <div style="margin-top:18px; display:flex; gap:12px">
         <a class="btn" href="#contact">Получить демо</a>
         <a class="btn secondary" href="#features">Посмотреть возможности</a>
       </div>
-      <div class="chips">
-        <span class="badge"><span class="dot"></span> Автоимпорт по API/CSV</span>
-        <span class="badge"><span class="dot"></span> Ролевой доступ</span>
-        <span class="badge"><span class="dot"></span> Финансовый учёт</span>
-      </div>
     </div>
-    <div class="glass ui">
-      <svg viewBox="0 0 680 420" width="100%" height="100%" role="img" aria-label="Дашборд">
+    <div class="panel">
+      <!-- pseudo map UI -->
+      <svg viewBox="0 0 680 420" width="100%" height="100%" role="img" aria-label="Карта маршрутов">
         <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#6aa7ff"/><stop offset="100%" stop-color="#a16dff"/></linearGradient></defs>
-        <rect x="20" y="20" width="640" height="380" rx="18" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)"/>
-        <rect x="40" y="48" width="180" height="24" rx="6" fill="rgba(255,255,255,.08)"/>
-        <rect x="230" y="48" width="120" height="24" rx="6" fill="rgba(255,255,255,.06)"/>
-        <rect x="360" y="48" width="120" height="24" rx="6" fill="rgba(255,255,255,.06)"/>
-        <rect x="490" y="48" width="120" height="24" rx="6" fill="rgba(255,255,255,.06)"/>
-        <rect x="40" y="90" width="280" height="210" rx="12" fill="rgba(255,255,255,.06)"/>
-        <rect x="340" y="90" width="300" height="100" rx="12" fill="rgba(255,255,255,.06)"/>
-        <rect x="340" y="200" width="300" height="100" rx="12" fill="rgba(255,255,255,.06)"/>
-        <polyline points="60,270 100,250 140,260 180,230 220,200 260,210 300,170" fill="none" stroke="url(#g1)" stroke-width="4"/>
-        <rect x="40" y="312" width="600" height="60" rx="10" fill="rgba(255,255,255,.03)"/>
-        <g transform="translate(50,328)" font-size="12" fill="#cfe0ff"><rect width="70" height="24" rx="8" fill="rgba(255,255,255,.06)"></rect><text x="12" y="16">OZON</text></g>
-        <g transform="translate(130,328)" font-size="12" fill="#cfe0ff"><rect width="70" height="24" rx="8" fill="rgba(255,255,255,.06)"></rect><text x="16" y="16">WB</text></g>
-        <g transform="translate(210,328)" font-size="12" fill="#cfe0ff"><rect width="90" height="24" rx="8" fill="rgba(255,255,255,.06)"></rect><text x="16" y="16">Я.Маркет</text></g>
-        <g transform="translate(310,328)" font-size="12" fill="#cfe0ff"><rect width="80" height="24" rx="8" fill="rgba(255,255,255,.06)"></rect><text x="18" y="16">Сайт</text></g>
-        <g transform="translate(400,328)" font-size="12" fill="#cfe0ff"><rect width="80" height="24" rx="8" fill="rgba(255,255,255,.06)"></rect><text x="14" y="16">WordPress</text></g>
+        <rect x="10" y="10" width="660" height="400" rx="18" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)"/>
+        <g stroke="rgba(255,255,255,.12)" fill="none"><path d="M40,180 C120,120 220,120 300,180 S460,240 560,180" /><path d="M60,280 C160,260 260,300 360,260 S520,220 620,260"/></g>
+        <g>
+          <circle cx="100" cy="160" r="10" fill="url(#g1)"/><text x="90" y="150" fill="#cfe0ff" font-size="12">К1</text>
+          <circle cx="360" cy="190" r="10" fill="url(#g1)"/><text x="350" y="180" fill="#cfe0ff" font-size="12">К2</text>
+          <circle cx="560" cy="170" r="10" fill="url(#g1)"/><text x="550" y="160" fill="#cfe0ff" font-size="12">К3</text>
+        </g>
       </svg>
     </div>
   </div>
@@ -142,21 +117,21 @@
 <section id="solution">
   <div class="container two">
     <div>
-      <h2>Комплексное решение вместо хаоса</h2>
-      <p class="muted">Бесконечные таблицы и копипаст между кабинетами уходят в прошлое. Команда работает в одном интерфейсе, данные подтягиваются автоматически, отчёты собираются за секунды.</p>
-      <ul class="check">
-        <li>Единое место сбора заказов со всех маркетплейсов и сайтов</li>
-        <li>Автоматический импорт: API, Excel, CSV</li>
-        <li>Гибкая аналитика: продажи, прибыль, воронки, реклама</li>
-        <li>Интеграции: 1С, AmoCRM, Tilda, WordPress и др.</li>
-        <li>Ролевой доступ и аудит действий</li>
-        <li>Поддержка ИИ: подсказки и поиск аномалий</li>
+      <h2>Комплексное решение вместо хаоса в Excel</h2>
+      <p class="muted">Никаких таблиц, чатиков и ручного распределения. Система берёт заказ, назначает курьеру, строит оптимальный маршрут, показывает статус и время доставки.</p>
+      <ul class="muted" style="margin:0; padding-left:18px">
+        <li>Единая очередь заказов и автоматическое назначение по зонам/сменам</li>
+        <li>Построение маршрутов с учётом пробок, тайм-слотов и приоритетов</li>
+        <li>Мобильный интерфейс курьера: старт/финиш, фото-подтверждение</li>
+        <li>Трекинг курьеров и обещанный ETA для клиента</li>
+        <li>Контроль SLA: задержки, просрочки, инциденты</li>
+        <li>Интеграции: Яндекс/Google карты, 1С, CRM</li>
       </ul>
     </div>
-    <div class="compare" id="compare">
-      <h3 style="margin-top:0">Почему не Google-таблицы</h3>
-      <p>Таблицы — это костыль. Вчера их три, сегодня тридцать, завтра никто не знает, где актуальные данные. Вместо управления бизнесом — бесконечный копипаст и ошибки.</p>
-      <p><b>Наш подход:</b> единая система, автоимпорт, быстрые отчёты, масштабируемость от ИП до сети с тысячами SKU и простая выгрузка для бухгалтерии и управленцев одной кнопкой.</p>
+    <div class="panel">
+      <h3 style="margin:0 0 6px">Почему не Google-таблицы</h3>
+      <p class="muted">Таблицы ломаются при росте: одна смена — ещё терпимо, три смены и 20+ курьеров — чистый ад. Ошибки, двойные назначения, потерянные заказы.</p>
+      <p><b>Наш подход:</b> единая система, автоматика, прозрачный трекинг и отчёты — чтобы вы управляли доставкой, а не тушили пожары.</p>
     </div>
   </div>
 </section>
@@ -165,58 +140,55 @@
   <div class="container">
     <h2>Возможности</h2>
     <div class="cards">
-      <div class="card"><h3>Импорт и нормализация</h3><p class="muted">API популярных площадок и загрузка Excel/CSV. Приведение данных к единому формату.</p></div>
-      <div class="card"><h3>Аналитика продаж</h3><p class="muted">Динамика, ABC/XYZ, эффективность рекламы, маржинальность, LTV. Отчёты — в пару кликов.</p></div>
-      <div class="card"><h3>Финансовый учёт</h3><p class="muted">ДДС, P&L, управленческий учёт, сверки с площадками. Экспорт для бухгалтерии (1С).</p></div>
-      <div class="card"><h3>Ролевой доступ</h3><p class="muted">Права для менеджеров, аналитиков и бухгалтерии. Аудит действий и безопасность.</p></div>
-      <div class="card"><h3>Единый интерфейс</h3><p class="muted">Все витрины и каналы продаж в одном месте — меньше кликов, больше контроля.</p></div>
-      <div class="card"><h3>ИИ-помощник</h3><p class="muted">Подсказки по аномалиям и трендам, отчёты на естественном языке.</p></div>
+      <div class="card"><h3>Приём заказов</h3><p class="muted">API/формы/Excel. Единая очередь, приоритеты, тайм-слоты.</p></div>
+      <div class="card"><h3>Маршрутизация</h3><p class="muted">Оптимальные маршруты с учётом пробок и ограничений. ETA.</p></div>
+      <div class="card"><h3>Трекинг</h3><p class="muted">Карта курьеров в онлайне, статусы, уведомления клиентам.</p></div>
+      <div class="card"><h3>Мобильный курьер</h3><p class="muted">Чеки-листы, фото-доказательства, офлайн-режим.</p></div>
+      <div class="card"><h3>Контроль SLA</h3><p class="muted">Просрочки, инциденты, штрафы, качество доставки.</p></div>
+      <div class="card"><h3>Финансы</h3><p class="muted">Расчёт выплат курьерам, себестоимость, аналитика по маршрутам.</p></div>
     </div>
   </div>
 </section>
 
-
-
 <section id="screens">
   <div class="container">
     <h2>Скриншоты</h2>
-    <p class="muted" style="margin-top:-6px">Реальные экраны системы. Кликните или свайпните для просмотра.</p>
     <div class="carousel" aria-label="Скриншоты продукта">
       <div class="carousel-track">
         <div class="slide">
           <div class="shot">
-            <h4>Dashboard — сводка продаж</h4>
-            <img src="dashboard.jpg" alt="Дашборд — сводка продаж" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>Ключевые показатели: выручка, заказы, маржа, топ-товары по площадкам.</p>
+            <h4>Диспетчерская</h4>
+            <img src="dispatch.jpg" alt="Диспетчерская панель: очередь заказов, назначение курьерам">
+            <p class="muted">Очередь заказов, зоны доставки, автоназначение и ручная корректировка.</p>
           </div>
           <div class="shot">
-            <h4>Аналитика ABC/XYZ</h4>
-            <img src="abc.jpg" alt="Аналитика ABC/XYZ" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>Сегментация ассортимента по вкладу в выручку и стабильности спроса.</p>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="shot">
-            <h4>Реклама</h4>
-            <img src="ads.jpg" alt="Отчёт по рекламным кампаниям" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>Расходы, конверсии, ROAS/ACoS, динамика кампаний.</p>
-          </div>
-          <div class="shot">
-            <h4>Финансовый учёт</h4>
-            <img src="fin.jpg" alt="Финансовые отчёты P&L и ДДС" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>P&amp;L, ДДС, сверки с площадками и экспорт в 1С.</p>
+            <h4>Карта и курьеры</h4>
+            <img src="map.jpg" alt="Карта маршрутов и курьеров с ETA">
+            <p class="muted">Позиции курьеров в реальном времени и оптимальные маршруты.</p>
           </div>
         </div>
         <div class="slide">
           <div class="shot">
-            <h4>Ролевой доступ</h4>
-            <img src="role.jpg" alt="Ролевой доступ и права пользователей" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>Разграничение доступа: менеджеры, аналитики, бухгалтерия.</p>
+            <h4>Маршруты и ETA</h4>
+            <img src="direction.jpg" alt="Построение маршрутов и расчёт ETA">
+            <p class="muted">Маршрутизация с учётом пробок, окон доставки и приоритетов.</p>
           </div>
           <div class="shot">
-            <h4>Аналитика — динамика продаж</h4>
-            <img src="abc.jpg" alt="Графики динамики продаж" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
-            <p>Детальная динамика и сравнение площадок.</p>
+            <h4>Мобильный курьер</h4>
+            <img src="mobile.jpg" alt="Мобильный интерфейс курьера">
+            <p class="muted">Старт/финиш, фото-подтверждение, подпись, офлайн.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="shot">
+            <h4>Отчёты и финансы</h4>
+            <img src="fin.jpg" alt="Отчёты, выплаты курьерам, себестоимость маршрутов">
+            <p class="muted">P&amp;L, выплаты курьерам, эффективность маршрутов.</p>
+          </div>
+          <div class="shot">
+            <h4>Контроль SLA</h4>
+            <img src="sla.jpg" alt="SLA, просрочки, инциденты, качество доставки">
+            <p class="muted">Просрочки, инциденты, рейтинг доставки по зонам.</p>
           </div>
         </div>
       </div>
@@ -224,24 +196,23 @@
       <button class="carousel-btn next" aria-label="Следующий">›</button>
     </div>
     <div class="dots" aria-hidden="true"></div>
+    <p class="tiny" style="margin-top:6px">* Изображения — примеры интерфейсов. Под ваш бренд и процессы дизайн можно адаптировать.</p>
   </div>
 </section>
-
-
 
 <section id="pricing">
   <div class="container">
     <h2>Стоимость</h2>
-    <div class="card" style="margin-bottom:14px">
-      <h3 style="margin:0 0 8px">Доступная автоматизация для бизнеса</h3>
-      <p class="muted" style="margin:0 0 8px">Полный доступ к системе — от <b>350&nbsp;000</b> до <b>430&nbsp;000&nbsp;₽</b>, в зависимости от необходимых модулей и интеграций.</p>
-      <p class="muted" style="margin:0">Это <b>разовый запуск под ваш бизнес</b>. Дальше решение работает автономно, без абонентской платы и лишних постоянных расходов на поддержку (по желанию — сервисный контракт).</p>
+    <div class="card">
+      <h3 style="margin:0 0 8px">Разовый запуск под ваш бизнес</h3>
+      <p class="muted" style="margin:0 0 8px">От <b>350&nbsp;000</b> до <b>430&nbsp;000&nbsp;₽</b> — в зависимости от набора модулей (маршрутизация, мобильный курьер, интеграции 1С/CRM, SLA-модуль).</p>
+      <p class="muted" style="margin:0">Без абонплаты — по желанию сервисный контракт на поддержку и развитие.</p>
     </div>
     <div class="cta">
       <div>
-        <div class="tagline">Хотите точную смету?</div>
-        <h3 style="margin:8px 0 0">Соберём конфигурацию модулей под ваши задачи</h3>
-        <p class="muted" style="margin:6px 0 0">После короткого интервью пришлю расчёт по срокам и бюджету.</p>
+        <div style="font-weight:700; color:#cfe0ff">Нужен точный расчёт?</div>
+        <h3 style="margin:8px 0 0">Соберём конфигурацию модулей</h3>
+        <p class="muted" style="margin:6px 0 0">После короткого интервью — сроки, бюджет и план внедрения.</p>
       </div>
       <a class="btn" href="#contact">Получить расчёт</a>
     </div>
@@ -253,55 +224,25 @@
     <h2>FAQ — Частые вопросы</h2>
     <div class="card" style="padding:0">
       <details open class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Чем это отличается от CRM?</summary>
-        <div class="muted" style="margin-top:8px">CRM — про клиентов и сделки. Моё приложение — про полный учёт продаж с маркетплейсов: финансы, аналитика, товары, реклама. С CRM оно не конкурирует, а дополняет (и интегрируется при необходимости).</div>
+        <summary style="cursor:pointer; font-weight:700">Это заменяет мою CRM?</summary>
+        <div class="muted" style="margin-top:8px">Нет, система не про лиды, а про доставку: заказы, курьеры, маршруты, SLA. С CRM мы интегрируемся и передаём статусы.</div>
       </details>
       <details class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Сколько времени занимает внедрение?</summary>
-        <div class="muted" style="margin-top:8px">Базовый функционал подключается за 5–7 дней. Интеграции с 1С/CRM и кастомные модули обсуждаются отдельно (обычно до 2–3 недель).</div>
+        <summary style="cursor:pointer; font-weight:700">Как строите маршруты?</summary>
+        <div class="muted" style="margin-top:8px">Используем картографические сервисы (Яндекс/Google) и вашу математику ограничений: тайм-слоты, зоны, вместимость, приоритеты.</div>
       </details>
       <details class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Поддерживаются ли редкие маркетплейсы?</summary>
-        <div class="muted" style="margin-top:8px">Да. Если у площадки есть API или выгрузка Excel/CSV, подключу её к системе.</div>
+        <summary style="cursor:pointer; font-weight:700">Можно ли кастомизировать?</summary>
+        <div class="muted" style="margin-top:8px">Да. Настраиваю под процессы: статусы, роли, отчёты, интеграции, брендирование интерфейса.</div>
       </details>
       <details class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Можно ли доработать систему под мои процессы?</summary>
-        <div class="muted" style="margin-top:8px">Да, решение кастомизируется под ваш бизнес. Это не «коробка», а адаптация под задачи.</div>
-      </details>
-      <details class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Что с поддержкой после внедрения?</summary>
-        <div class="muted" style="margin-top:8px">Базовое решение работает автономно. По желанию — договор на поддержку и доработки.</div>
-      </details>
-      <details class="faq-item" style="border-bottom:1px solid rgba(255,255,255,.08); padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Насколько надёжна система?</summary>
-        <div class="muted" style="margin-top:8px">Данные в защищённой БД, ролевой доступ, аудит действий. Безопасность — приоритет.</div>
+        <summary style="cursor:pointer; font-weight:700">Какие сроки внедрения?</summary>
+        <div class="muted" style="margin-top:8px">Базовый запуск — 7–10 дней. С интеграциями и кастомом — 2–3 недели.</div>
       </details>
       <details class="faq-item" style="padding:16px 18px">
-        <summary style="cursor:pointer; font-weight:700">Какая итоговая стоимость?</summary>
-        <div class="muted" style="margin-top:8px">Базовый функционал — от 352&nbsp;000 ₽. Доп.модули (1С, CRM, финмодуль) — по 32&nbsp;000 ₽ каждый. Максимальная конфигурация — около 450&nbsp;000 ₽.</div>
+        <summary style="cursor:pointer; font-weight:700">Какой стек и требования?</summary>
+        <div class="muted" style="margin-top:8px">Веб-приложение (Python/JS, БД SQL). Сервер Linux или облако. Мобильная часть — PWA/Telegram-бот, по желанию нативные apps.</div>
       </details>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container two">
-    <div>
-      <h2>Кто внедряет</h2>
-      <p>Меня зовут <b>Торинцев Александр</b>. Более 15 лет я занимаюсь разработкой ПО и автоматизацией бизнес-процессов. Делаю решения, которые «просто работают» и снимают рутину с команд.</p>
-      <ul class="check">
-        <li>Python, PHP, JavaScript, SQL</li>
-        <li>Интеграции с 1С, CRM, маркетплейсами</li>
-        <li>Веб-приложения, боты, парсеры</li>
-      </ul>
-    </div>
-    <div class="cta">
-      <div>
-        <div class="tagline">Готовы перестать воевать с табличками?</div>
-        <h3 style="margin:8px 0 0">Покажу демо и предложу план внедрения</h3>
-        <p class="muted" style="margin:6px 0 0">Первичная консультация бесплатно. Сроки и бюджет — после короткого интервью.</p>
-      </div>
-      <a class="btn" href="#contact">Оставить заявку</a>
     </div>
   </div>
 </section>
@@ -309,84 +250,48 @@
 <section id="contact">
   <div class="container">
     <h2>Оставить заявку</h2>
-    <p class="muted">Укажите контакты и площадки, с которыми вы работаете — вернусь с демо и предложением.</p>
+    <p class="muted">Расскажите о вашем процессе доставки — вернусь с демо и предложением.</p>
     <form id="leadForm">
       <div><label class="tiny">Имя</label><input name="name" placeholder="Ваше имя" required></div>
       <div><label class="tiny">Email</label><input type="email" name="email" placeholder="name@company.ru" required></div>
-      <div><label class="tiny">Компания (опционально)</label><input name="company" placeholder="ООО «Пример»"></div>
-      <div><label class="tiny">Маркетплейсы</label>
-        <select name="marketplaces" multiple>
-          <option>Ozon</option>
-          <option>Wildberries</option>
-          <option>Яндекс.Маркет</option>
-          <option>Собственный сайт</option>
-          <option>Другое</option>
-        </select>
-      </div>
-      <div class="full"><label class="tiny">Комментарий</label><textarea name="message" placeholder="Кратко опишите текущие задачи и боли"></textarea></div>
+      <div><label class="tiny">Компания</label><input name="company" placeholder="ООО «Пример»"></div>
+      <div><label class="tiny">Город/зоны доставки</label><input name="city" placeholder="Например: Москва, СЗАО/ЮЗАО"></div>
+      <div class="full"><label class="tiny">Комментарий</label><textarea name="message" placeholder="Смены, количество курьеров, интеграции, боли"></textarea></div>
       <div class="full"><button class="btn" type="submit">Отправить</button><span id="formMsg" class="tiny" style="margin-left:12px"></span></div>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="container">© <span id="y"></span> Торинцев Александр. Единая система учёта продаж. <span class="muted">Сделано с любовью к автоматизации.</span></div>
+  <div class="container">© <span id="y"></span> Торинцев Александр. Система управления доставкой и логистикой.</div>
 </footer>
 
 <script>
+  // carousel
+  (function(){
+    const root = document.querySelector('#screens .carousel');
+    if(!root) return;
+    const track = root.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prev = root.querySelector('.prev');
+    const next = root.querySelector('.next');
+    const dotsWrap = root.parentElement.querySelector('.dots');
+    let index=0, timer;
+    function update(){ track.style.transform='translateX('+(-index*100)+'%)'; dotsWrap.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===index)); }
+    function go(i){ index=(i+slides.length)%slides.length; update(); }
+    function buildDots(){ slides.forEach((_,i)=>{ const d=document.createElement('button'); d.className='dot'+(i===0?' active':''); d.addEventListener('click', ()=>{stop(); go(i)}); dotsWrap.appendChild(d); }); }
+    function nextSlide(){ go(index+1) } function prevSlide(){ go(index-1) }
+    function start(){ timer=setInterval(nextSlide, 5000) } function stop(){ clearInterval(timer) }
+    buildDots(); update(); start();
+    next.addEventListener('click', ()=>{stop(); nextSlide(); start()}); prev.addEventListener('click', ()=>{stop(); prevSlide(); start()});
+    root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+    let sx=null; root.addEventListener('touchstart', e=>{sx=e.touches[0].clientX; stop();},{passive:true});
+    root.addEventListener('touchend', e=>{ if(sx===null) return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40) (dx<0?nextSlide:prevSlide)(); sx=null; start(); });
+  })();
+  // form
   document.getElementById('y').textContent = new Date().getFullYear();
-  const f = document.getElementById('leadForm'); const msg = document.getElementById('formMsg');
-  f.addEventListener('submit', function(e){ e.preventDefault(); msg.textContent='Спасибо! Заявка отправлена.'; msg.style.color='#00d68f'; f.reset(); });
+  const f=document.getElementById('leadForm'), msg=document.getElementById('formMsg');
+  f.addEventListener('submit', e=>{e.preventDefault(); msg.textContent='Спасибо! Заявка отправлена.'; msg.style.color='#00d68f'; f.reset();});
 </script>
-
-<script>
-(function(){
-  const root = document.querySelector('#screens .carousel');
-  if(!root) return;
-  const track = root.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
-  const prev = root.querySelector('.prev');
-  const next = root.querySelector('.next');
-  const dotsWrap = root.parentElement.querySelector('.dots');
-  let index = 0, timer;
-
-  function update(){
-    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    dotsWrap.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===index));
-  }
-  function go(i){
-    index = (i + slides.length) % slides.length;
-    update();
-  }
-  function buildDots(){
-    slides.forEach((_,i)=>{
-      const d = document.createElement('button');
-      d.className='dot' + (i===0?' active':'');
-      d.addEventListener('click', ()=>{stop(); go(i)});
-      dotsWrap.appendChild(d);
-    });
-  }
-  function nextSlide(){ go(index+1) }
-  function prevSlide(){ go(index-1) }
-  function start(){ timer = setInterval(nextSlide, 5000) }
-  function stop(){ clearInterval(timer) }
-
-  buildDots(); update(); start();
-  next.addEventListener('click', ()=>{ stop(); nextSlide(); start() });
-  prev.addEventListener('click', ()=>{ stop(); prevSlide(); start() });
-  root.addEventListener('mouseenter', stop);
-  root.addEventListener('mouseleave', start);
-  // touch
-  let startX=null;
-  root.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; stop(); }, {passive:true});
-  root.addEventListener('touchend', e=>{
-    if(startX===null) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    if(Math.abs(dx) > 40) (dx<0?nextSlide:prevSlide)();
-    startX=null; start();
-  });
-})();
-</script>
-
 </body>
 </html>
