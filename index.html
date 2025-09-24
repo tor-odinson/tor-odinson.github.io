@@ -66,6 +66,23 @@
       .cta{flex-direction:column; align-items:flex-start}
       .nav a{display:none}
     }
+
+    /* Carousel */
+    .carousel{position:relative; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03)}
+    .carousel-track{display:flex; transition:transform .5s ease}
+    .slide{min-width:100%; padding:14px; display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    .shot{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:16px}
+    .shot h4{margin:0 0 8px}
+    .shot p{margin:0; color:var(--muted)}
+    .shot img{display:block;max-width:100%;height:auto}
+    .carousel-btn{position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.15); padding:10px 12px; border-radius:10px; cursor:pointer}
+    .carousel-btn:hover{background:rgba(0,0,0,.5)}
+    .prev{left:10px} .next{right:10px}
+    .dots{display:flex; gap:8px; justify-content:center; margin-top:12px}
+    .dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); border:1px solid rgba(255,255,255,.2); cursor:pointer}
+    .dot.active{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    @media (max-width: 960px){ .slide{grid-template-columns:1fr} }
+
   </style>
 </head>
 <body>
@@ -74,7 +91,7 @@
     <div class="brand"><span class="dot"></span> ТОРИНЦЕВ АЛЕКСАНДР</div>
     <nav>
       <a href="#solution">Решение</a>
-      <a href="#features">Возможности</a>
+      <a href="#features">Возможности</a><a href="#screens">Скриншоты</a>
       <a href="#pricing">Стоимость</a>
       <a href="#faq">FAQ</a>
       <a href="#about">Обо мне</a>
@@ -157,6 +174,60 @@
     </div>
   </div>
 </section>
+
+
+
+<section id="screens">
+  <div class="container">
+    <h2>Скриншоты</h2>
+    <p class="muted" style="margin-top:-6px">Реальные экраны системы. Кликните или свайпните для просмотра.</p>
+    <div class="carousel" aria-label="Скриншоты продукта">
+      <div class="carousel-track">
+        <div class="slide">
+          <div class="shot">
+            <h4>Dashboard — сводка продаж</h4>
+            <img src="dashboard.jpg" alt="Дашборд — сводка продаж" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>Ключевые показатели: выручка, заказы, маржа, топ-товары по площадкам.</p>
+          </div>
+          <div class="shot">
+            <h4>Аналитика ABC/XYZ</h4>
+            <img src="abc.jpg" alt="Аналитика ABC/XYZ" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>Сегментация ассортимента по вкладу в выручку и стабильности спроса.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="shot">
+            <h4>Реклама</h4>
+            <img src="ads.jpg" alt="Отчёт по рекламным кампаниям" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>Расходы, конверсии, ROAS/ACoS, динамика кампаний.</p>
+          </div>
+          <div class="shot">
+            <h4>Финансовый учёт</h4>
+            <img src="fin.jpg" alt="Финансовые отчёты P&L и ДДС" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>P&amp;L, ДДС, сверки с площадками и экспорт в 1С.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="shot">
+            <h4>Ролевой доступ</h4>
+            <img src="role.jpg" alt="Ролевой доступ и права пользователей" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>Разграничение доступа: менеджеры, аналитики, бухгалтерия.</p>
+          </div>
+          <div class="shot">
+            <h4>Аналитика — динамика продаж</h4>
+            <img src="abc.jpg" alt="Графики динамики продаж" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+            <p>Детальная динамика и сравнение площадок.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Предыдущий">‹</button>
+      <button class="carousel-btn next" aria-label="Следующий">›</button>
+    </div>
+    <div class="dots" aria-hidden="true"></div>
+  </div>
+</section>
+
+
 
 <section id="pricing">
   <div class="container">
@@ -267,5 +338,55 @@
   const f = document.getElementById('leadForm'); const msg = document.getElementById('formMsg');
   f.addEventListener('submit', function(e){ e.preventDefault(); msg.textContent='Спасибо! Заявка отправлена.'; msg.style.color='#00d68f'; f.reset(); });
 </script>
+
+<script>
+(function(){
+  const root = document.querySelector('#screens .carousel');
+  if(!root) return;
+  const track = root.querySelector('.carousel-track');
+  const slides = Array.from(track.children);
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+  const dotsWrap = root.parentElement.querySelector('.dots');
+  let index = 0, timer;
+
+  function update(){
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    dotsWrap.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===index));
+  }
+  function go(i){
+    index = (i + slides.length) % slides.length;
+    update();
+  }
+  function buildDots(){
+    slides.forEach((_,i)=>{
+      const d = document.createElement('button');
+      d.className='dot' + (i===0?' active':'');
+      d.addEventListener('click', ()=>{stop(); go(i)});
+      dotsWrap.appendChild(d);
+    });
+  }
+  function nextSlide(){ go(index+1) }
+  function prevSlide(){ go(index-1) }
+  function start(){ timer = setInterval(nextSlide, 5000) }
+  function stop(){ clearInterval(timer) }
+
+  buildDots(); update(); start();
+  next.addEventListener('click', ()=>{ stop(); nextSlide(); start() });
+  prev.addEventListener('click', ()=>{ stop(); prevSlide(); start() });
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  // touch
+  let startX=null;
+  root.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; stop(); }, {passive:true});
+  root.addEventListener('touchend', e=>{
+    if(startX===null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40) (dx<0?nextSlide:prevSlide)();
+    startX=null; start();
+  });
+})();
+</script>
+
 </body>
 </html>
